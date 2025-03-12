@@ -7,7 +7,6 @@ from streamlit_option_menu import option_menu
 from streamlit_extras.mention import mention
 warnings.filterwarnings("ignore")
 
-genai.configure(api_key=google_gemini_api_key)
 generation_config = {
     "temperature": 1,
     "top_p": 0.95,
@@ -25,7 +24,7 @@ SYSTEM_PROMPT = "You are a Globe Telecom Virtual Assitant."
 st.set_page_config(page_title="Introduction to Streamlit and GEMINI API", page_icon="", layout="wide")
 
 with st.sidebar :
-    st.text('ALGOREX TECHNOLOGIES')
+    st.image("maia.png")
     api_key = st.text_input('Enter Gemini API token:', type='password')
 
     if api_key:
@@ -48,7 +47,7 @@ with st.sidebar :
 
     options = option_menu(
         "Dashboard", 
-        ["Home", "About Us", "Model", "Chat"],
+        ["Home", "About Us", "Chat"],
         icons = ['book', 'globe', 'tools', "tools", "tools", "tools"],
         menu_icon = "book", 
         default_index = 0,
@@ -85,7 +84,7 @@ if options == 'Chat':
             if st.session_state.get("chat_session") is None:
                 st.session_state.chat_session = model.start_chat(history=[])
                 st.session_state.messages = []
-                response = st.session_state.chat_session.send_message("You will act accordingly and introduce yourself as the following : " + SYSTEM_PROMPT)
+                response = st.session_state.chat_session.send_message("You will act and introduce yourself as the following :  " + SYSTEM_PROMPT)
                 with st.chat_message("assistant"):
                     st.markdown(response.text)
 
