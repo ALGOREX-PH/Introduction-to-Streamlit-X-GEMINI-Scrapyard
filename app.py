@@ -30,9 +30,9 @@ with st.sidebar :
 
     if api_key:
        try:
-          genai.configure(api_key=api_key) # Correct way to set the API key
+          genai.configure(api_key=api_key)
           model = genai.GenerativeModel('gemini-2.0-flash')
-          response = model.generate_content("Hello") # Simple test
+          response = model.generate_content("Hello") # Hello test
           st.success('Proceed to entering your prompt message!', icon='👉')
           
        except Exception as e:
@@ -63,7 +63,7 @@ if 'message' not in st.session_state:
     st.session_state.message = []
 
 if 'chat_session' not in st.session_state:
-    st.session_state.chat_session = None  # Placeholder for your chat session initialization
+    st.session_state.chat_session = None
 
 # Options : Home
 if options == "Home" :
